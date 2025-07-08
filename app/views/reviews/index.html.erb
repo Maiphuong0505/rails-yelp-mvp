@@ -1,0 +1,18 @@
+<div class="container mt-3">
+  <div class="my-3">
+    <h1>📝 Reviews about <%= @restaurant.name %></h1>
+      <% if @reviews.empty? %>
+        <p class="mb-0">There is no review for <%= @restaurant.name %> yet!</p>
+      <% else %>
+        <% @reviews.each do |review| %>
+            <div class="my-3">
+              <p class="mb-0"><%= review.content %></p>
+              <p class="mb-0">Rating: <%= '⭐️' * review.rating %></p>
+            </div>
+        <% end %>
+      <% end %>
+    </div>
+  <%= link_to "See restaurants list", restaurants_path, class: "btn btn-success" %>
+  <%= link_to "Write a review for #{ @restaurant.name }", new_restaurant_review_path(@restaurant), class: "btn btn-warning" %>
+  <%= link_to "Go back to #{@restaurant.name}", restaurant_path(@restaurant), class: "btn btn-info" %>
+</div>

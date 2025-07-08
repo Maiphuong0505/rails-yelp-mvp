@@ -1,0 +1,12 @@
+<div class="container mt-3">
+  <h2>Write your review for <%= @restaurant.name %></h2>
+  <%= simple_form_for [@restaurant, @review] do |f| %>
+    <%= f.input :content, as: :text %>
+    <%= f.input :rating, collection: Review::RATING, prompt: "Select Rating" %>
+    <%# The array of values for RATING is created inside the Review model %>
+    <%= f.submit "Submit Review", class: "btn btn-success"%>
+  <% end %>
+  <div class="my-3">
+    <%= link_to "Go back to #{@restaurant.name}", restaurant_path(@restaurant), class: "btn btn-info" %>
+  </div>
+</div>

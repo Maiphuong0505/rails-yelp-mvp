@@ -1,0 +1,11 @@
+<div class="container mt-3">
+  <h2>Add your favorite restaurant</h2>
+  <%= simple_form_for [@restaurant] do |f| %>
+    <%= f.input :name %>
+    <%= f.input :category, collection: Restaurant::CATEGORY, prompt: "Select Category" %>
+    <%# The array of values for CATEGORY is created inside the Restaurant model %>
+    <%= f.input :address %>
+    <%= f.input :phone_number %>
+    <%= f.submit "Add this restaurant", class: "btn btn-success"%>
+  <% end %>
+</div>
