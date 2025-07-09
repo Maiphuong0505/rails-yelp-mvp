@@ -1,3 +1,20 @@
+<nav class="container py-4 px-2 mb-3 d-flex justify-content-start align-items-center navbar" style="background-color: #e3f2fd;" data-bs-theme="light">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <%= link_to "See all restaurants", restaurants_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "#{@restaurant.name}", restaurant_path(@restaurant), class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Write a review", new_restaurant_review_path(@restaurant), class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "See all reviews", restaurant_reviews_path(@restaurant), class: "nav-link active" %>
+    </li>
+  </ul>
+</nav>
+
 <div class="container mt-3">
   <div class="my-3">
     <h1>📝 Reviews about <%= @restaurant.name %></h1>
@@ -12,7 +29,4 @@
         <% end %>
       <% end %>
     </div>
-  <%= link_to "See restaurants list", restaurants_path, class: "btn btn-success" %>
-  <%= link_to "Write a review for #{ @restaurant.name }", new_restaurant_review_path(@restaurant), class: "btn btn-warning" %>
-  <%= link_to "Go back to #{@restaurant.name}", restaurant_path(@restaurant), class: "btn btn-info" %>
 </div>

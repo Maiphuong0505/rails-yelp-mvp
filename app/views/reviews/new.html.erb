@@ -1,3 +1,20 @@
+<nav class="container py-4 px-2 mb-3 d-flex justify-content-start align-items-center navbar" style="background-color: #e3f2fd;" data-bs-theme="light">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <%= link_to "See all restaurants", restaurants_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "#{@restaurant.name}", restaurant_path(@restaurant), class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Write a review", new_restaurant_review_path(@restaurant), class: "nav-link active" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "See all reviews", restaurant_reviews_path(@restaurant), class: "nav-link" %>
+    </li>
+  </ul>
+</nav>
+
 <div class="container mt-3">
   <h2>Write your review for <%= @restaurant.name %></h2>
   <%= simple_form_for [@restaurant, @review] do |f| %>
@@ -6,7 +23,4 @@
     <%# The array of values for RATING is created inside the Review model %>
     <%= f.submit "Submit Review", class: "btn btn-success"%>
   <% end %>
-  <div class="my-3">
-    <%= link_to "Go back to #{@restaurant.name}", restaurant_path(@restaurant), class: "btn btn-info" %>
-  </div>
 </div>

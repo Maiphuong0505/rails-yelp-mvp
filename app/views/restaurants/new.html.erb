@@ -1,3 +1,14 @@
+<nav class="container py-4 px-2 mb-3 d-flex justify-content-start  align-items-center navbar" style="background-color: #e3f2fd;" data-bs-theme="light">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <%= link_to "Go back to restaurant list", restaurants_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Add a restaurant", new_restaurant_path, class: "nav-link active" %>
+    </li>
+  </ul>
+</nav>
+
 <div class="container mt-3">
   <h2>Add your favorite restaurant</h2>
   <%= simple_form_for [@restaurant] do |f| %>

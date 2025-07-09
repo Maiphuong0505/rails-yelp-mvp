@@ -1,9 +1,19 @@
-<div class="container mt-3">
+<nav class="container py-4 px-2 mb-3 d-flex justify-content-start  align-items-center navbar" style="background-color: #e3f2fd;" data-bs-theme="light">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <%= link_to "See all restaurants", restaurants_path, class: "nav-link active" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Add a restaurant", new_restaurant_path, class: "nav-link" %>
+    </li>
+  </ul>
+</nav>
+
+<div class="container">
   <h1>Our best picks for you👇</h1>
   <ul class="list-group my-3">
     <% @restaurants.each do |restaurant| %>
-        <li class="list-group-item"><%= link_to restaurant.name, restaurant_path(restaurant) %></li>
+        <li class="list-group-item"><%= link_to restaurant.name, restaurant_path(restaurant), class: "text-decoration-none text-reset " %></li>
     <% end %>
   </ul>
-  <%= link_to "Add a restaurant", new_restaurant_path, class: "btn btn-success" %>
 </div>
