@@ -1,4 +1,4 @@
-<nav class="container py-4 px-2 mb-3 d-flex justify-content-start align-items-center navbar" style="background-color: #e3f2fd;" data-bs-theme="light">
+<nav class="py-4 px-4 mb-3 d-flex justify-content-start align-items-center navbar" style="background-color: #e3f2fd;" data-bs-theme="light">
   <ul class="nav nav-pills">
     <li class="nav-item">
       <%= link_to "See all restaurants", restaurants_path, class: "nav-link" %>
@@ -6,20 +6,38 @@
     <li class="nav-item">
       <%= link_to "#{@restaurant.name}", restaurant_path(@restaurant), class: "nav-link active" %>
     </li>
-    <li class="nav-item">
-      <%= link_to "Write a review", new_restaurant_review_path(@restaurant), class: "nav-link" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "See all reviews", restaurant_reviews_path(@restaurant), class: "nav-link" %>
-    </li>
   </ul>
 </nav>
 
 <div class="container mt-3">
-  <h3><%= @restaurant.name %></h3>
+  <h2><%= @restaurant.name %></h2>
   <div class="my-3">
     <h6>❓ <%= @restaurant.category.capitalize %></h6>
     <p class="mb-0">🏡 <%= @restaurant.address %></p>
     <p class="mb-0">☎️ <%= @restaurant.phone_number %></p>
+  </div>
+  <hr>
+  <div class="my-3 show-reviews">
+    <h3>📝 Reviews about <%= @restaurant.name %></h3>
+    <% if @reviews.empty? %>
+      <p class="mb-0">There is no review for <%= @restaurant.name %> yet!</p>
+    <% else %>
+      <% @reviews.each do |review| %>
+          <div class="my-3">
+            <p class="mb-0"><%= review.content %></p>
+            <p class="mb-0">Rating: <%= '⭐️' * review.rating %></p>
+          </div>
+      <% end %>
+    <% end %>
+  </div>
+  <hr>
+  <div class="form">
+    <h3>Write your review for <%= @restaurant.name %></h3>
+    <%= simple_form_for [@restaurant, @review] do |f| %>
+      <%= f.input :content, as: :text %>
+      <%= f.input :rating, collection: Review::RATING, prompt: "Select Rating" %>
+      <%# The array of values for RATING is created inside the Review model %>
+      <%= f.submit "Submit Review", class: "btn btn-success"%>
+    <% end %>
   </div>
 </div>
